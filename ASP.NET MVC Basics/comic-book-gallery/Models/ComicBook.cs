@@ -8,4 +8,7 @@ public class ComicBooks
     public string DescriptionHtml { get; set; } = null!;
     public Artist[] Artists { get; set; } = null!;
     public bool Favorite { get; set; }
+    public string DisplayTest => SeriesTitle + " #" + IssueNumber;
+    public string CoverImageFileName => SeriesTitle.Replace(" ", "-").ToLower() + "-" + IssueNumber + ".jpg";
+
 }
