@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 
 using comic_book_gallery.Data;
@@ -6,9 +7,20 @@ namespace comic_book_gallery.Controllers;
 
 public class ComicBooksController : Controller
 {
-    public IActionResult Detail()
+    private readonly ComicBookRepository _comicBookRepository;
+
+    public ComicBooksController()
     {
-        var comicBook = new ComicBookRepository();
-        return View(comicBook.GetComicBook(700));
+        _comicBookRepository = new ComicBookRepository();
+    }
+
+    public IActionResult Detail(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        return View(_comicBookRepository.GetComicBook(id.Value));
     }
 }
