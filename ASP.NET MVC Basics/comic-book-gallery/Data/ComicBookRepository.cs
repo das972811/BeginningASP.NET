@@ -55,5 +55,10 @@ public class ComicBookRepository
         }
     };
 
+    public ComicBook[] GetComicBooks()
+    {
+        return _comicBooks;
+    }
+
     public ComicBook GetComicBook(int id) => _comicBooks.First(c => c.Id == id);
 }

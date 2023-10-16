@@ -14,6 +14,13 @@ public class ComicBooksController : Controller
         _comicBookRepository = new ComicBookRepository();
     }
 
+    public IActionResult Index()
+    {
+        var comicBooks = _comicBookRepository.GetComicBooks();
+
+        return View(comicBooks);
+    }
+
     public IActionResult Detail(int? id)
     {
         if (id == null)
