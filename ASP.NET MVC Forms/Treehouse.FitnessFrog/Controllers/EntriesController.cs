@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Treehouse.FitnessFrogs.Controllers;
+namespace Treehouse.FitnessFrog.Controllers;
 
 public class EntriesController : Controller
 {
