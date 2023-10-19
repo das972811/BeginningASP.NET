@@ -16,7 +16,7 @@ public class Activity
         WeightLifting = 10
     }
 
-    public Activity(ActivityType activityType, string? name)
+    public Activity(ActivityType activityType, string? name = null)
     {
         Id = (int) activityType;
         Name = name ?? activityType.ToString();
