@@ -24,7 +24,13 @@ public class Entry
         bool exclude = false,
         string? notes = null)
     {
-
+        Id = id;
+        Date = new DateTime(year, month, day);
+        ActivityId = (int) activityType;
+        Duration = duration;
+        Intensity = intensity;
+        Exclude = exclude;
+        Notes = notes;
     }
 
     public int Id { get; set; }
