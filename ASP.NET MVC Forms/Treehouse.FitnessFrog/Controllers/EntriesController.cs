@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 using Treehouse.FitnessFrog.Data;
@@ -35,6 +36,26 @@ public class EntriesController : Controller
 
     public IActionResult Add()
     {
+        return View();
+    }
+
+    public IActionResult Edit(int? id)
+    {
+        if (id is null)
+        {
+            return BadRequest();
+        }
+        
+        return View();
+    }
+
+    public IActionResult Delete(int? id)
+    {
+        if (id is null)
+        {
+            return BadRequest();
+        }
+
         return View();
     }
 }
