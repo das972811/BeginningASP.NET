@@ -30,7 +30,7 @@ public class EntriesController : Controller
         ViewBag.TotalActivity = totalActivity;
         ViewBag.AverageDailyActivity = (double) (totalActivity / (double) numberOfActiveDays);
 
-        return View(ViewBag);
+        return View(entries);
     }
 
     public IActionResult Add()
