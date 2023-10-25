@@ -41,8 +41,8 @@ public class EntriesController : Controller
 
     [HttpPost]
     public IActionResult Add(
-        string date, string activityId, string duration,
-        string intensity, string exclude, string notes
+        DateTime? date, int? activityId, double? duration,
+        Entry.IntensityLevel? intensity, bool? exclude, string notes
     )
     {
         ViewBag.Date = date;
