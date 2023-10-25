@@ -39,6 +39,12 @@ public class EntriesController : Controller
         return View();
     }
 
+    [ActionName("Add"), HttpPost]
+    public IActionResult AddPost()
+    {  
+        return View();
+    }
+
     public IActionResult Edit(int? id)
     {
         if (id is null)
