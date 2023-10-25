@@ -36,14 +36,21 @@ public class EntriesController : Controller
 
     public IActionResult Add()
     {
-        return View();
+        var entry = new Entry()
+        {
+            Date = DateTime.Today
+        };
+
+        return View(entry);
     }
 
+    // [HttpPost]
+    // public IActionResult Add(
+    //     DateTime? date, int? activityId, double? duration,
+    //     Entry.IntensityLevel? intensity, bool? exclude, string notes
+    // )
     [HttpPost]
-    public IActionResult Add(
-        DateTime? date, int? activityId, double? duration,
-        Entry.IntensityLevel? intensity, bool? exclude, string notes
-    )
+    public IActionResult Add(Entry entry)
     {
         // ViewBag.Date = ModelState["Date"]?.AttemptedValue;
         // ViewBag.ActivityId = ModelState["ActivityId"]?.AttemptedValue;
@@ -52,7 +59,14 @@ public class EntriesController : Controller
         // ViewBag.Exclude = ModelState["Exclude"]?.AttemptedValue;
         // ViewBag.Notes = ModelState["Notes"]?.AttemptedValue;
 
-        return View();
+        if (ModelState.IsValid)
+        {
+            _entriesRepository.AddEntry(entry);
+
+            /// TODO Display the Entries List Page
+        }
+
+        return View(entry);
     }
 
     public IActionResult Edit(int? id)
