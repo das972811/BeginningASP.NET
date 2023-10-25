@@ -39,9 +39,19 @@ public class EntriesController : Controller
         return View();
     }
 
-    [ActionName("Add"), HttpPost]
-    public IActionResult AddPost()
-    {  
+    [HttpPost]
+    public IActionResult Add(
+        string date, string activityId, string duration,
+        string intensity, string exclude, string notes
+    )
+    {
+        ViewBag.Date = date;
+        ViewBag.ActivityId = activityId;
+        ViewBag.Duration = duration;
+        ViewBag.Intensity = intensity;
+        ViewBag.Exclude = exclude;
+        ViewBag.Notes = notes;
+
         return View();
     }
 
