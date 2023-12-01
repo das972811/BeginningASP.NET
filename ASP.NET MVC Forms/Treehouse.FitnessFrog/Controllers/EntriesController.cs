@@ -1,6 +1,6 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Treehouse.FitnessFrog.Data;
 using Treehouse.FitnessFrog.Models;
 
@@ -41,6 +41,10 @@ public class EntriesController : Controller
             Date = DateTime.Today
         };
 
+        ViewBag.ActivitiesSelectListItems = new SelectList(
+            Data.Data.Activities, "Id", "Name"
+        );
+
         return View(entry);
     }
 
@@ -68,6 +72,10 @@ public class EntriesController : Controller
 
             /// TODO Display the Entries List Page
         }
+
+        ViewBag.ActivitiesSelectListItems = new SelectList(
+            Data.Data.Activities, "Id", "Name"
+        );
 
         return View(entry);
     }

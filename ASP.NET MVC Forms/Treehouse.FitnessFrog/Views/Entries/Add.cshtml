@@ -1,7 +1,20 @@
 @model Treehouse.FitnessFrog.Models.Entry
 
 @{
-    ViewBag.Title = "Add Entry";
+    @* ViewBag.Title = "Add Entry";
+
+    var selectListItems = new [] {
+        new SelectListItem() { Value = "1", Text = "Item-1", Selected = false },
+        new SelectListItem() { Value = "2", Text = "Item-2", Selected = true }
+    };
+
+    var items = new[]
+    {
+        new { Id = 1, Name = "Item 1"},
+        new { Id = 2, Name = "Item 2"}
+    };
+
+    var selectListItems2 = new SelectList(items, "Id", "Name"); *@
 }
 
 <h2>@ViewBag.Title</h2>
@@ -21,7 +34,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.ActivityId, "Activity", new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.ActivityId, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.ActivityId, ViewBag.ActivitiesSelectListItems as SelectList, "", new { @class = "form-control" })
                 @* @Html.Label("ActivityId", "Activity", new { @class = "control-label" })
                 @Html.TextBox("ActivityId", null, new { @class = "form-control" }) *@
                 @* <label for="ActivityId" class="control-label">Activity</label>
