@@ -39,7 +39,7 @@ public class Entry
     [Display(Name = "Activity")]
     public int ActivityId { get; set; }
 
-    public Activity Activity { get; set; } = null!;
+    public Activity? Activity { get; set; }
     public double Duration { get; set; }
     public IntensityLevel Intensity { get; set; }
     public bool Exclude { get; set; }

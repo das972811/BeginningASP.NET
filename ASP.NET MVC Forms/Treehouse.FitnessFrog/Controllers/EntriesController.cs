@@ -52,16 +52,19 @@ public class EntriesController : Controller
     [HttpPost]
     public IActionResult Add(Entry entry)
     {
+
         // ViewBag.Date = ModelState["Date"]?.AttemptedValue;
         // ViewBag.ActivityId = ModelState["ActivityId"]?.AttemptedValue;
         // ViewBag.Duration = ModelState["Duration"]?.AttemptedValue;
         // ViewBag.Intensity = ModelState["Intensity"]?.AttemptedValue;
         // ViewBag.Exclude = ModelState["Exclude"]?.AttemptedValue;
         // ViewBag.Notes = ModelState["Notes"]?.AttemptedValue;
-
         if (ModelState.IsValid)
         {
+            Console.WriteLine("Model State is valid");
             _entriesRepository.AddEntry(entry);
+
+            return RedirectToAction("Index");
 
             /// TODO Display the Entries List Page
         }
