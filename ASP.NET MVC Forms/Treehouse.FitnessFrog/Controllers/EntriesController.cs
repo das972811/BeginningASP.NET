@@ -63,6 +63,15 @@ public class EntriesController : Controller
         // ViewBag.Intensity = ModelState["Intensity"]?.AttemptedValue;
         // ViewBag.Exclude = ModelState["Exclude"]?.AttemptedValue;
         // ViewBag.Notes = ModelState["Notes"]?.AttemptedValue;
+
+        // ModelState.AddModelError("", "This is a global message.");
+
+        if (ModelState.ContainsKey("Duration") && ModelState["Duration"]?.Errors.Count == 0 && entry.Duration <= 0)
+        {
+            ModelState.AddModelError("Duration", "The Duration Field value must be greater than '0'");
+        }
+
+
         if (ModelState.IsValid)
         {
             Console.WriteLine("Model State is valid");
