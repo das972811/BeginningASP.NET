@@ -41,9 +41,7 @@ public class EntriesController : Controller
             Date = DateTime.Today
         };
 
-        ViewBag.ActivitiesSelectListItems = new SelectList(
-            Data.Data.Activities, "Id", "Name"
-        );
+        SetupActivitiesSelectListItems();
 
         return View(entry);
     }
@@ -66,10 +64,7 @@ public class EntriesController : Controller
 
         // ModelState.AddModelError("", "This is a global message.");
 
-        if (ModelState.ContainsKey("Duration") && ModelState["Duration"]?.Errors.Count == 0 && entry.Duration <= 0)
-        {
-            ModelState.AddModelError("Duration", "The Duration Field value must be greater than '0'");
-        }
+        ValidateEntry(entry);
 
 
         if (ModelState.IsValid)
@@ -82,9 +77,7 @@ public class EntriesController : Controller
             /// TODO Display the Entries List Page
         }
 
-        ViewBag.ActivitiesSelectListItems = new SelectList(
-            Data.Data.Activities, "Id", "Name"
-        );
+        SetupActivitiesSelectListItems();
 
         return View(entry);
     }
@@ -95,8 +88,32 @@ public class EntriesController : Controller
         {
             return BadRequest();
         }
-        
+
+        Entry? entry = _entriesRepository.GetEntry((int) id);
+
+        if (entry is null)
+        {
+            return NotFound();
+        }
+
+        ValidateEntry(entry);
+        SetupActivitiesSelectListItems();
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Entry entry) {
+        ValidateEntry(entry);
+
+        if (ModelState.IsValid)
+        {
+            _entriesRepository.UpdateEntry(entry);
+
+            return RedirectToAction("Index");
+        }
+
+        SetupActivitiesSelectListItems();
+        return View(entry);
     }
 
     public IActionResult Delete(int? id)
@@ -107,5 +124,20 @@ public class EntriesController : Controller
         }
 
         return View();
+    }
+
+    private void ValidateEntry(Entry entry)
+    {
+        if (ModelState.ContainsKey("Duration") && ModelState["Duration"]?.Errors.Count == 0 && entry.Duration <= 0)
+        {
+            ModelState.AddModelError("Duration", "The Duration Field value must be greater than '0'");
+        }
+    }
+
+    private void SetupActivitiesSelectListItems()
+    {
+        ViewBag.ActivitiesSelectListItems = new SelectList(
+            Data.Data.Activities, "Id", "Name"
+        );
     }
 }
