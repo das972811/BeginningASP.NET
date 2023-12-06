@@ -44,6 +44,6 @@ public class Entry
     public IntensityLevel Intensity { get; set; }
     public bool Exclude { get; set; }
 
-    [MaxLength(200, ErrorMessage = "The Notes field cannot be longer than 200 characterse")]
+    [MaxLength(200, ErrorMessage = "The Notes field cannot be longer than 200 characterse"), Required]
     public string? Notes { get; set; }
 }
